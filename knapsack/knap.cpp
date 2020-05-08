@@ -1,12 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<iostream>
-
 #include<algorithm>
+#include<set>
+#include<vector>
 
-using namespace std;
-int greedy_algorithm(int n, int w_max,int* w, int*p);
-bool comp(pair<double,int> a,pair<double,int> b);
+
+int greedy_algorithm(int n, int w_max, int* w, int* p);
+int dinamic_algorithm_1(int n, int w_max, int* weights, int* p);
+int dinamic_algorithm_2(int n, int w_max, int* weights, int* p);
+bool comp(std::pair<double,int> a,std::pair<double,int> b);
 int main(int argc, char**argv)
 {
     int n;
@@ -38,7 +41,11 @@ int main(int argc, char**argv)
         }
         fscanf(fp,"%s\n\n",s);
         //printf("%s\n",s);
-        printf("%f\n",(solution+0.)/(greedy_algorithm(n,w_max,w,p)+0.));
+        //printf("%f\n",(solution+0.)/(greedy_algorithm(n,w_max,w,p)+0.));
+        printf("eeeeeeee\n");
+        dinamic_algorithm_1(n,w_max,w,p);
+        printf("ffffffff\n");
+        //printf("%f\n",(solution+0.)/(dinamic_algorithm_1(n,w_max,w,p)+0.));
         //break;
     }
     delete[] w;
@@ -52,7 +59,7 @@ int main(int argc, char**argv)
 int greedy_algorithm(int n, int w_max,int* w, int*p)
 {
     int sum_weight=0,sum_price=0;
-    pair<double,int>* specific_values=new pair<double,int>[n];
+    std::pair<double,int>* specific_values=new std::pair<double,int>[n];
     for(int i=0;i<n;i++)
     {
         specific_values[i].first=p[i]/w[i];
@@ -78,7 +85,41 @@ int greedy_algorithm(int n, int w_max,int* w, int*p)
     delete [] specific_values;
     return sum_price;
 }
-bool comp(pair<double,int> a,pair<double,int> b)
+bool comp(std::pair<double,int> a,std::pair<double,int> b)
 {
     return a.first>b.first;
+}
+int dinamic_algorithm_1(int n, int w_max, int* weights, int* p)
+{
+    printf("hello\n");
+    int* results=new int [w_max+1];
+    std::set<int>* choice_lists=new std::set<int> [w_max+1];
+    /*results[0]=0;
+
+    for(int w=1;w<w_max+1;w++)
+    {
+        results[w]=results[w-1];
+        choice_lists[w]=choice_lists[w-1];
+        for(int i=0;i<n;i++)
+        {
+            if(w-weights[i]>=0 && results[w-weights[i]]+p[i]>results[w] &&
+               choice_lists[w-weights[i]].find(i)==choice_lists[w-weights[i]].end())
+            {
+                results[w]=results[w-weights[i]]+p[i]>results[w];
+                choice_lists[w]=choice_lists[w-weights[i]];
+                choice_lists[w].insert(i);
+            }
+        }
+
+    }
+    printf("%d",results[w_max]);
+    delete [] results;
+    delete [] choice_lists;
+    return results[w_max];*/
+    return 1;
+
+}
+int dinamic_algorithm_2(int n, int w_max, int* w, int* p)
+{
+    
 }
