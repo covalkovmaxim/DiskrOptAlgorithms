@@ -65,7 +65,7 @@ int main(int argc, char**argv)
     FILE*fp=fopen(argv[1],"rw");
     FILE*fp_integer_linprog_accuracy=fopen("integer_linprog_accuracy.txt","w");
     FILE*fp_integer_linprog_time=fopen("integer_linprog_time.txt","w");
-    for(int j=0;j<300;j++)
+    for(int j=0;j<200;j++)
     {
         fscanf(fp,"%s\n",s);
         fscanf(fp,"n %d\n",&n);

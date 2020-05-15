@@ -39,7 +39,7 @@ int main(int argc, char**argv)
     FILE*fp_approximate_2_time=fopen("aproximate_2_time.txt", "w");
     FILE*fp_genetic_accuracy=fopen("genetic_accuracy.txt", "w");
     FILE*fp_genetic_time=fopen("genetic_time.txt", "w");
-    for(int j=0;j<210;j++)
+    for(int j=0;j<200;j++)
     {
         fscanf(fp,"%s\n",s);
         fscanf(fp,"n %d\n",&n);
